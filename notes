@@ -1,0 +1,6 @@
+go 语言特性
+2.天然并发
+a.从语言层面支持并发,非常简单
+b.goroute,轻量级线程，创建成千上完个goroute成为可能
+c.基于CSP (Communicating Sequential Process) 模型实现
+
