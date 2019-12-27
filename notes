@@ -4,3 +4,21 @@ a.从语言层面支持并发,非常简单
 b.goroute,轻量级线程，创建成千上完个goroute成为可能
 c.基于CSP (Communicating Sequential Process) 模型实现
 
+
+
+# go 语言的运行方式
+1.
+go build 
+# 运算上面一句命令以后会出现一个.exe的文件
+然后直接运行.exe的文件即可
+
+2.
+go build -o test.exe
+# 运行上面的命令会生成test.exe的文件
+然后直接运行test.exe的文件即可
+
+3.
+go install 
+# 运行后会在bin目录下生成一个以 项目名.exe 的文件
+
+
