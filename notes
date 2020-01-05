@@ -22,3 +22,23 @@ go install
 # 运行后会在bin目录下生成一个以 项目名.exe 的文件
 
 
+还有一些问题没有解决
+
+VSCode配置Go语言开发环境小技巧:
+
+# vs code 配置代码段
+ctrl+shift+p
+让后输入>snippet
+然后输入 go
+这个时候会打开一个文件
+go.json文件
+让后在字典的里面输入：
+	"print":{
+		"prefix": "pln",
+		"body": "fmt.Println($0)",
+		"description": "打印行..."
+	}
+
+这样就可以生效，在需要输入打印的时候输入pln就会变成fmt.Println()
+
+

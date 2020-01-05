@@ -9,4 +9,5 @@ func main() {
 
 	var b, c, d = 1, 2, 4
 	fmt.Println(b, c, d)
+	
 }
