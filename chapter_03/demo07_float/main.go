@@ -20,8 +20,8 @@ func main() {
 	var b = 1.11
 	fmt.Printf("b的类型为%T\n", b)
 
-	//
+	// 科学计算法
 	num5 := 5.12e2
-	fmt.Println("num5:",num5)
+	fmt.Println("num5:", num5)
 
 }
