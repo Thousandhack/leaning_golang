@@ -24,4 +24,15 @@ func main() {
 	num5 := 5.12e2
 	fmt.Println("num5:", num5)
 
+	// 基础数据的数据类型的默认值
+	var q int 
+	var w float32
+	var e float64
+	var isMarryied bool
+	var name string
+	fmt.Println("q=",q)
+	fmt.Println("w=",w)
+	fmt.Println("e=",e)
+	fmt.Println("isMarryied=",isMarryied)
+	fmt.Println("name=",name)
 }
