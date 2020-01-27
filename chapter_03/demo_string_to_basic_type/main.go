@@ -30,4 +30,10 @@ func main() {
 	f1, _ = strconv.ParseFloat(str3, 64)
 	fmt.Printf("f1 type %T b=%v\n", f1, f1)
 	// 返回什么类型，就用什么类型接受，另外在转成的相同类型下的不同位
+
+	// 注意:
+	var str4 string = "helo"
+	var n3 int64
+	n3,_ = strconv.ParseInt(str4,10,64)
+	fmt.Printf("n3 type %T b=%v\n", n3, n3)
 }
