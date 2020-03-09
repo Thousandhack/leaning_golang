@@ -10,7 +10,6 @@ import "fmt"
 // 	}
 // }
 
-
 func test(n int) int {
 	if n == 10 {
 		return 1
@@ -19,11 +18,8 @@ func test(n int) int {
 	}
 }
 
-
-
-func main(){
+func main() {
 	// fmt.Println("f(1)=",test(1))  // 3
 	// fmt.Println("f(5)=",test(5))  // 63
 	fmt.Println(test(8))
 }
-
