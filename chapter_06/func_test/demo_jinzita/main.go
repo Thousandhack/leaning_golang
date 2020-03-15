@@ -1,0 +1,27 @@
+package main
+
+import "fmt"
+
+func Jinzita(totalLevel int){
+
+	// 表示层数
+	for i :=1;i <= totalLevel; i++ {
+		// 在打印 *前先打印空格
+		for k:=1; k <= totalLevel - i; k++ {
+			fmt.Print(" ")
+		}
+
+		// j 表示每层打印多少
+		for j :=1; j <= 2 * i - 1; j++ {
+			fmt.Print("*")
+		}
+		fmt.Println()
+	}
+}
+
+func main() {
+	var n int
+	fmt.Println("请输入金字塔层数：")
+	fmt.Scanln(&n)
+	Jinzita(n)
+}
