@@ -11,7 +11,7 @@ func main(){
 
 	var demo_slice []int  = []int{1,2,3}
 	// 切片追加切片
-	slice = append(slice,demo_slice...)
+	slice = append(slice,demo_slice...)  // ... 不能忘
 	fmt.Println("new_new_slice=",slice)
 	
 }
