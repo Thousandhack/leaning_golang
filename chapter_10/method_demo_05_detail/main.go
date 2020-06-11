@@ -37,7 +37,7 @@ func main() {
 	}
 	// 用指针
 	/*
-		如果一个类实现了string()这个方法,那么fmt.Print()默认调用这个变量的String进行输出。
+		如果一个类实现了string()这个方法,那么fmt.Print()默认调用这个变量的String进行输出 。
 	*/
 	fmt.Println(&stu)
 
