@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-//
+
 type Monkey struct {
 	Name string
 }
