@@ -24,18 +24,27 @@ func (p Phone) Stop() {
 
 }
 
+func (p Phone) Call() {
+	fmt.Println("手机打电话。。。")
+
+}
+
 // 让Camera 实现 Use 接口的方法
 type Camera struct {
 	Name string
 }
 
-func (computer Computer) Working(usb Usb){
+func (computer Computer) Working(usb Usb) {
 	usb.Start()
+	// 如果usb 是指向Phone结构体，则需要调用call方法
+	// 使用类型断言
+	if phone, ok := usb.(Phone); ok == true {
+		phone.Call()
+	}
 	usb.Stop()
 }
 
-type Computer struct{
-
+type Computer struct {
 }
 
 func (c Camera) Start() {
@@ -48,7 +57,7 @@ func (c Camera) Stop() {
 
 }
 
-func main(){
+func main() {
 	// 定义一个use接口数组，可以存放Phone和Camera的结构体变量
 	// 这里就体现出多态数组
 	// 利用了接口多态的特点，原来一个数组只可以放一种类型，现在可以实现多种类型
@@ -61,7 +70,7 @@ func main(){
 	// Phone还有一个特有的方法call() ，请遍历Use数组，如果是Phone变量
 	// 除了调用Usb 接口声明的方法外，还需要调用Phone 特有方法 call => 类型断言
 	var computer Computer
-	for _,v := range useArr{
+	for _, v := range useArr {
 		computer.Working(v)
 	}
 
