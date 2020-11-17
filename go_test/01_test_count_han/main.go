@@ -20,6 +20,9 @@ func main() {
 	fmt.Printf("%T\n", c)
 	fmt.Printf("%T\n", d)
 	//编写代码统计出字符串"hello深圳南山小王子"中汉字的数量。
+	// 1.依次拿到字符串中的字符
+	// 2.判断当前这个字符串中的字符
+	// 3.把汉字的次数累加得到最终结果
 	s := "hello深圳南山小王子"
 	count := 0
 	for _, v := range s {
