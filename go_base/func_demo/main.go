@@ -2,42 +2,68 @@ package main
 
 import "fmt"
 
-// 函数
+var x = 100 // 定义一个全局变量
 
-// 函数的定义
-
-// 没有返回值的
-func sub(x int, y int) {
-	fmt.Println(x - y)
+// 函数是组织好的、可重复使用的、用于执行指定任务的代码块。
+// 函数的可变参数与返回切片
+// return也可以省略返回值
+func funcDemo(title string, y ...int) (z []int) {
+	fmt.Println(title)
+	return y
 }
 
-// 有返回值的
-// 函数的返回可以返回也可以不返回
-func sum(x int, y int) int {
-	return x + y
+func globalVarDemo() {
+	// 函数的查找变量的顺序
+	// 1. 先在函数内部查找
+	// 2. 找不到就往函数的外面查找，一直找到全局
+
+	fmt.Println(x)
 }
 
-// 命名的返回值就相当于在函数中声明一个变量
-// ret 不要再次定义
-func sumTwo(x int, y int) (ret int) {
-	ret = x + y
-	return ret
+func funcTypeDemo() {
+	fmt.Println("Hello")
 }
 
-// 多个参数返回值
-func manyValue(x int, y int) (int ,int) {
-	return x, y
+func funcTypeDemoTwo() int {
+	return 10
+}
+
+func funcTypeDemoFour(a int, b int) int {
+	return a + b
+}
+
+// 传进去的参数为函数类型 下面为有一个返回值的函数
+func funcTypeDemoThree(x func() int) func(int,int) int  {
+	z := x()
+	fmt.Println("z = ",z)
+	return funcTypeDemoFour
 }
 
 func main() {
-	sub(10, 5)
-
-	ret := sum(5, 6)
-	fmt.Println(ret)
-
-	res := sumTwo(9, 4)
+	sliceDemo := make([]int, 3, 3)
+	sliceDemo[0] = 3
+	sliceDemo[1] = 6
+	sliceDemo[2] = 9
+	sliceDemo = append(sliceDemo, 100)
+	fmt.Println(sliceDemo)
+	res := funcDemo("Hello", sliceDemo[0], sliceDemo[1])
 	fmt.Println(res)
 
-	a, b := manyValue(5, 6)
-	fmt.Println(a,b)
+	// 全局变量的例子
+	// 函数内的变量，无法在函数外使用
+	// 全局作用域
+	// 函数作用域
+		// LEGB原则
+	// 代码块作用域 for
+	globalVarDemo()
+
+	// 函数也是一个变量类型
+	// 高阶函数
+	// 函数也是一种数据类型，既可以做参数也可以做返回值
+	fmt.Printf("%T\n", funcTypeDemo)
+	fTDT := funcTypeDemoTwo
+	fmt.Printf("%T\n", fTDT)  // 数据类型： func() int
+
+	ret := funcTypeDemoThree(funcTypeDemoTwo)
+	fmt.Printf("%T\n",ret)   // 返回值为函数
 }
