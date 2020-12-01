@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -33,7 +34,7 @@ func insertContent(){
 		fmt.Printf("open file failed,err:%v\n",err)
 		return
 	}
-	defer fileObj.Close()
+	//defer fileObj.Close()
 	// 因为没有办法直接在文件中插入内容，所以要借助一个临时文件
 	temFile,err := os.OpenFile("./temp.txt",os.O_CREATE|os.O_TRUNC|os.O_WRONLY,0644)
 	if err != nil{
@@ -55,6 +56,25 @@ func insertContent(){
 	var s []byte
 	s = []byte{'c','a','b'}
 	temFile.Write(s)
+	// 把原文件后续内容写入临时文件
+	var x [1024]byte
+	for {
+		n,err := fileObj.Read(x[:])
+		if err == io.EOF{
+			temFile.Write(x[:n])
+			break
+		}
+		if err != nil{
+			fmt.Println("read from file failed err:",err)
+			return
+		}
+		temFile.Write(x[:n])
+	}
+	// 源文件后续的也写入了临时文件中
+	fileObj.Close()
+	temFile.Close()
+	os.Rename("./temp.txt","./text.txt")
+
 
 
 }
