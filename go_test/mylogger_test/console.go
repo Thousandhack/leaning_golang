@@ -42,7 +42,7 @@ func (c ConsoleLogger) Debug(format string,a ...interface{}) {
 	c.log(DEBUG,format,a...)
 }
 
-func (c ConsoleLogger) Trance(format string,a ...interface{}) {
+func (c ConsoleLogger) Trace(format string,a ...interface{}) {
 	c.log(TRANCE,format,a...)
 }
 

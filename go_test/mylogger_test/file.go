@@ -8,7 +8,7 @@ import (
 )
 
 // 往文件中写入日志，并在文件日志一定大小后，进行切割
-
+// 文件日志结构体
 type FileLogger struct {
 	Level       LogLevel
 	filePath    string // 日志文件保存的路径
@@ -53,10 +53,12 @@ func (f *FileLogger) initFile() (error) {
 	return nil
 }
 
+// 判断是否记录该日志
 func (f *FileLogger) enable(loglevel LogLevel) bool {
 	return loglevel >= f.Level
 }
 
+// 判断文件是否需要切割
 func (f *FileLogger) checkFileSize(file *os.File) bool {
 	// *os.File 是一个结构体指针
 	// 获取文件对象的详细信息
@@ -71,11 +73,8 @@ func (f *FileLogger) checkFileSize(file *os.File) bool {
 
 }
 
+// 切割文件
 func (f *FileLogger) splitFileLog(file *os.File) (*os.File, error) {
-	// 日志需要切割
-	// 1.关闭当前的日志文件
-	f.fileObj.Close()
-	// 2.rename 进行备份
 	nowStr := time.Now().Format("20060102150405000")
 	fileInfo, err := file.Stat()
 	if err != nil {
@@ -83,7 +82,11 @@ func (f *FileLogger) splitFileLog(file *os.File) (*os.File, error) {
 		return nil, err
 	}
 	oldLogFileName := path.Join(f.filePath, fileInfo.Name()) // 拿到当前日志的完整路径
-	newLogFileName := fmt.Sprintf("%s_%s.bak_%s", f.filePath, f.fileName, nowStr)
+	newLogFileName := fmt.Sprintf("%s_%s.bak_%s", oldLogFileName, f.fileName, nowStr)
+	// 日志需要切割
+	// 1.关闭当前的日志文件
+	file.Close()
+	// 2.rename 进行备份
 	os.Rename(oldLogFileName, newLogFileName)
 	// 3.打开一个新的文件
 	fileObj, err := os.OpenFile(oldLogFileName, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
@@ -95,7 +98,7 @@ func (f *FileLogger) splitFileLog(file *os.File) (*os.File, error) {
 	return fileObj, nil
 }
 
-// 公用的写入文件的方法
+// 根据指定的日志文件路径和文件名打开日志文件
 func (f FileLogger) fileLog(lv LogLevel, format string, a ...interface{}) {
 	if f.enable(lv) {
 		msg := fmt.Sprintf(format, a...)
@@ -103,24 +106,34 @@ func (f FileLogger) fileLog(lv LogLevel, format string, a ...interface{}) {
 		funcName, fileName, lineNo := getInfo(3) // 拿到谁调用的这一行的功能
 		if f.checkFileSize(f.fileObj) {
 			newFile,err := f.splitFileLog(f.fileObj)  // 日志文件
-			if er
+			if err != nil{
+				return
+			}
+			f.fileObj = newFile
 		}
-		now.Format("2006-01-02 15:04:05")
 		fmt.Fprintf(f.fileObj, "%s [%s] [%s:%s:%d] %s\n", now.Format("2006-01-02 15:04:05"), getLogStringLevel(lv), funcName, fileName, lineNo, msg)
-		if lv > ERROR {
+		if lv >= ERROR {
+			if f.checkFileSize(f.errfileObj) {
+				newFile,err := f.splitFileLog(f.errfileObj)  // 日志文件
+				if err != nil{
+					return
+				}
+				f.errfileObj = newFile
+			}
 			// 如果要记录的日志大于等于ERROR级别，还要在err日志文件中再记录一遍
 			fmt.Fprintf(f.errfileObj, "%s [%s] [%s:%s:%d] %s\n", now.Format("2006-01-02 15:04:05"), getLogStringLevel(lv), funcName, fileName, lineNo, msg)
 		}
 	}
 }
 
+// 级别的日志 Debug
 func (f *FileLogger) Debug(format string, a ...interface{}) {
 	if f.enable(DEBUG) {
 		f.fileLog(DEBUG, format, a...)
 	}
 }
 
-func (f FileLogger) Trance(format string, a ...interface{}) {
+func (f FileLogger) Trace(format string, a ...interface{}) {
 	if f.enable(TRANCE) {
 		f.fileLog(TRANCE, format, a...)
 	}
@@ -143,6 +156,7 @@ func (f *FileLogger) Error(format string, a ...interface{}) {
 		f.fileLog(ERROR, format, a...)
 	}
 }
+
 
 func (f *FileLogger) Fatal(format string, a ...interface{}) {
 	if f.enable(FATAL) {
