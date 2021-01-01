@@ -1,4 +1,4 @@
-package method_demo2
+package main
 
 import "fmt"
 
@@ -12,7 +12,13 @@ func (m myInt)hello()  {
 }
 
 func main()  {
-	//
+	// myInt 类型的值为100
 	m := myInt(100)
 	m.hello()
+
+	//
+	var i int32 = 10
+	fmt.Println(i)
+	var o = int32(10)
+	fmt.Println(o)
 }

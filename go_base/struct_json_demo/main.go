@@ -21,6 +21,7 @@ func main(){
 		Name: "zero",
 		Age:  18,
 	}
+	// 序列化
 	b,err := json.Marshal(p1)  // 转成字节流
 	if err !=nil{
 		fmt.Println("")

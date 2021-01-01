@@ -35,6 +35,7 @@ func (c chicken) eat(food string) {
 	fmt.Printf("%s吃%s~\n",c.name,food)
 }
 
+
 func main() {
 	var a1 animal  // 最开始的动态类型为nil 动态值为nil
 
@@ -46,6 +47,15 @@ func main() {
 	// 实现接口变量能够实现不同的值
 	a1.move()
 	a1.eat("鱼")
+	// 使用指针 也可以
+	c2 := &cat{
+		name: "小白猫",
+		feet: 4,
+	}
+	a1 = c2
+	a1.move()
+	a1.eat("猫饲料")
+
 
 	c1 := chicken{ // 定义一个cat类型的变量
 		name: "小公鸡",

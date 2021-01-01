@@ -35,4 +35,9 @@ func main() {
 	fmt.Println("e=",e)
 	fmt.Println("isMarryied=",isMarryied)
 	fmt.Println("name=",name)
+
+	// 小数默认float64
+	// 不同类型不能进行赋值
+	f1 := 1.2345678
+	fmt.Printf("%T\n",f1)
 }

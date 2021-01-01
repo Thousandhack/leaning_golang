@@ -49,6 +49,7 @@ func timeOperateDemo(){
 	later := now.Add(time.Hour) // 一小时后
 	fmt.Println(later)
 	fmt.Println(now.Add(time.Minute*10)) // 10分钟后
+	//fmt.Println(now.Sub(time.Minute*10)) // 10分钟后
 	// 定时器  可以做一个轮询的东西
 	// 定时器的本质上是一个通道（channel）。
 	timer := time.Tick(time.Second)

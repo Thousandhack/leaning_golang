@@ -37,7 +37,7 @@ type Camera struct {
 func (computer Computer) Working(usb Usb) {
 	usb.Start()
 	// 如果usb 是指向Phone结构体，则需要调用call方法
-	// 使用类型断言
+	// 使用类型断言  [遍历多态数组判断是否有哪个变量]
 	if phone, ok := usb.(Phone); ok == true {
 		phone.Call()
 	}
