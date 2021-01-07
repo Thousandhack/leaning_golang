@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>艾斯的图片</h1>
+<img id="i1" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1040733428,3456217524&fm=26&gp=0.jpg"
+     width="400" height="400">
+<button id="b1"> 点击换图</button>
+<script>
+    document.getElementById("b1").onclick = function () {
+        if (document.getElementById("i1").src == "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1040733428,3456217524&fm=26&gp=0.jpg") {
+            document.getElementById('i1').src = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3833870108,3398835517&fm=26&gp=0.jpg"
+        } else {
+            document.getElementById("i1").src = "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1040733428,3456217524&fm=26&gp=0.jpg"
+        }
+    }
+</script>
+</body>
+</html>
