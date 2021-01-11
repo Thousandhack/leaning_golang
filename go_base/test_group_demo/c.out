@@ -1,0 +1,4 @@
+mode: set
+base_stu/split_string/split.go:21.45,24.13 2 1
+base_stu/split_string/split.go:29.2,30.15 2 1
+base_stu/split_string/split.go:24.13,28.3 3 1
