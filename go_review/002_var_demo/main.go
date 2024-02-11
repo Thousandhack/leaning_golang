@@ -24,6 +24,7 @@ func main() {
 	age = 25
 	isOk = false
 	// go 语言中非全局变量声明了必须使用
+	fmt.Print(name, age, isOk)
 	fmt.Printf("%s,%d,%t", name, age, isOk)
 
 }
