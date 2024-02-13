@@ -28,4 +28,14 @@ func main() {
 	for i, v := range s {
 		fmt.Printf("%d %c\n", i, v)
 	}
+
+	// 流程控制之跳出for 循环
+	// 当i=5时就跳出for循环
+	fmt.Println("for start")
+	for i := 0; i < 10; i++ {
+		if i == 5 {
+			break
+		}
+	}
+	fmt.Println("for over")
 }

@@ -13,6 +13,9 @@ func main() {
 
 	for i := 1; i < 10; i++ {
 		for j := i; j >= 1; j-- {
+			if i == 2 {
+				break
+			}
 			fmt.Printf("%d*%d=%d\t", i, j, i*j)
 		}
 		fmt.Println()
