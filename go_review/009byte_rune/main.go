@@ -16,4 +16,12 @@ func main() {
 	c4 := 'h'
 	fmt.Printf("c3:%T c4:%T\n", c3, c4)
 	fmt.Printf("%d\n", c4)
+
+	// 类型转换
+	n1 := 10 // int
+	var f float64
+	f = float64(n1)
+	fmt.Println(f)
+	fmt.Printf("%T\n", f)
+
 }
