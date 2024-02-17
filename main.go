@@ -3,11 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	var a string = "hsz"
-	/* 这是我的第一个简单的程序 */
-	fmt.Println("Hello, World!", a)
+	arr := make([]int, 0)
+	for i := 0; i < 10; i++ {
+		fmt.Println("len 为", len(arr), "cap 为", cap(arr))
+		arr = append(arr, i)
+		fmt.Println(arr)
+	}
 
-	var b, c, d = 1, 2, 4
-	fmt.Println(b, c, d)
-	
 }
