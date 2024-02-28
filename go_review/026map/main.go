@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+	// 以下有实现按key排序的map的功能
 	// 纳秒
 	//初始化随机数种子
 	//rand.Seed(time.Now().UnixNano()) // 这种方式1.20开始弃用
