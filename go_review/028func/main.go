@@ -28,6 +28,7 @@ func f5() (int, int) {
 	return 1, 2
 }
 
+// 参数类型简写
 func f6(x, y int, m, n string, i, j bool) int {
 	return x + y
 }
@@ -35,6 +36,7 @@ func f6(x, y int, m, n string, i, j bool) int {
 // 可变长参数
 func f7(x string, y ...int) {
 	fmt.Println(x)
+	fmt.Printf("%T\n", y)
 	fmt.Println(y)
 }
 
